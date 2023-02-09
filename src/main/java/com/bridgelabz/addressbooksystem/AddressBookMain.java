@@ -13,8 +13,9 @@ public class AddressBookMain {
             System.out.println("2. Edit Address Book");
             System.out.println("3. Display Address Book Names");
             System.out.println("4. Delete Address Book ");
-            System.out.println("5. Search Person Based on City or State across Address Books ");
-            System.out.println("6. Exit");
+            System.out.println("5. Search Person in a City or a State across Address Books ");
+            System.out.println("6. View Persons by City or State ");
+            System.out.println("7. Exit");
             System.out.println("Enter your choice: ");
             Scanner s = new Scanner(System.in);
             int userOption1 = s.nextInt();
@@ -110,20 +111,36 @@ public class AddressBookMain {
                 case 5:
                     if (addressBookHashMap.size() != 0) {
                         Scanner scan = new Scanner(System.in);
-                        System.out.println("Enter City or State of a Person");
-                        String cityOrState = scan.next();
+                        System.out.println("Enter Person Name");
+                        String personName = scan.next();
+                        System.out.println( personName + " from City\t\tState ");
                         for (Map.Entry<String, AddressBook> entry : addressBookHashMap.entrySet()) {
                             String k = entry.getKey();
                             AddressBook abs = addressBookHashMap.get(k);
-                            abs.searchPersons(cityOrState);
+                            abs.personFromCityorState(personName);
                         }
                     }
                     else{
                         System.out.println("Address Book is Empty");
                     }
                     break;
-
                 case 6:
+                    if (addressBookHashMap.size() != 0) {
+                        Scanner scan = new Scanner(System.in);
+                        System.out.println("Enter City or State of a Person");
+                        String cityOrState = scan.next();
+                        System.out.println("Persons from " + cityOrState.toUpperCase());
+                        for (Map.Entry<String, AddressBook> entry : addressBookHashMap.entrySet()) {
+                            String k = entry.getKey();
+                            AddressBook abs = addressBookHashMap.get(k);
+                            abs.searchPersonsbyCityorState(cityOrState);
+                        }
+                    }
+                    else{
+                        System.out.println("Address Book is Empty");
+                    }
+                    break;
+                case 7:
                     System.exit(0);
                     break;
                 default:

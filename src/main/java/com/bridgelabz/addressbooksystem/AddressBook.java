@@ -225,11 +225,23 @@ public class AddressBook {
         }
     }
 
-    public void searchPersons(String cityorState) {
+    public void searchPersonsbyCityorState(String cityorState) {
         for (Contact c : contactArrayList) {
             if ( c.getCity().equalsIgnoreCase(cityorState) || c.getState().equalsIgnoreCase(cityorState)) {
-                System.out.println("First Name : " + c.getFirstName());
+                System.out.println(c.getFirstName());
             }
         }
     }
+
+
+    public void personFromCityorState(String personName){
+        for ( Contact c: contactArrayList ) {
+            if( c.getFirstName().equalsIgnoreCase(personName)){
+                System.out.println("\t\t\t"+c.getState()+"\t\t" + c.getState());
+            }
+        }
+
+    }
+
+
 }
