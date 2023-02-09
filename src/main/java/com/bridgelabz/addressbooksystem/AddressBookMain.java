@@ -7,16 +7,18 @@ import java.util.Scanner;
 public class AddressBookMain {
     public static void main(String[] args) {
         Map<String, AddressBook> addressBookHashMap = new HashMap<String, AddressBook>();
-        while(true){
+        int userOption = 0;
+        while(userOption != 6){
             System.out.println("1. Add Address Book");
             System.out.println("2. Edit Address Book");
             System.out.println("3. Display Address Book Names");
             System.out.println("4. Delete Address Book ");
-            System.out.println("5. Exit");
+            System.out.println("5. Search Person Based on City or State across Address Books ");
+            System.out.println("6. Exit");
             System.out.println("Enter your choice: ");
             Scanner s = new Scanner(System.in);
-            int addressBookOption = s.nextInt();
-            switch(addressBookOption){
+            int userOption1 = s.nextInt();
+            switch(userOption1){
                 case 1:
                     Scanner sa = new Scanner(System.in);
                     System.out.println("Enter Unique Address Book Name");
@@ -27,13 +29,15 @@ public class AddressBookMain {
                     break;
                 case 2:
                     System.out.println("Welcome to Address Book Editing");
-                    while (true) {
+                    int userOption2 = 0;
+                    while (userOption2 != 5 && userOption2 != 6) {
                         Scanner sade = new Scanner(System.in);
                         System.out.println("1. Add Contact");
                         System.out.println("2. Display Contacts");
                         System.out.println("3. Edit Contact");
                         System.out.println("4. Delete Contact");
-                        System.out.println("5. Exit");
+                        System.out.println("5. Go Back Main Menu");
+                        System.out.println("6. Exit");
                         System.out.println("Enter your choice: ");
                         int choice = sade.nextInt();
                         System.out.println("Enter Address Book Name");
@@ -54,7 +58,12 @@ public class AddressBookMain {
                                     ab.deleteContact();
                                     break;
                                 case 5:
-                                    System.exit(0);
+                                    userOption2 = 5;
+                                    break;
+                                case 6:
+                                    userOption2 = 5;
+                                    userOption = 5;
+                                    break;
                                 default:
                                     System.out.println("Invalid Choice");
                                     break;
@@ -99,6 +108,22 @@ public class AddressBookMain {
                     }
                     break;
                 case 5:
+                    if (addressBookHashMap.size() != 0) {
+                        Scanner scan = new Scanner(System.in);
+                        System.out.println("Enter City or State of a Person");
+                        String cityOrState = scan.next();
+                        for (Map.Entry<String, AddressBook> entry : addressBookHashMap.entrySet()) {
+                            String k = entry.getKey();
+                            AddressBook abs = addressBookHashMap.get(k);
+                            abs.searchPersons(cityOrState);
+                        }
+                    }
+                    else{
+                        System.out.println("Address Book is Empty");
+                    }
+                    break;
+
+                case 6:
                     System.exit(0);
                     break;
                 default:

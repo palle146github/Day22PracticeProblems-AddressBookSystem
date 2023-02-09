@@ -9,35 +9,50 @@ public class AddressBook {
 
     public void addContactToAddressBook() {
         Scanner scanner = new Scanner(System.in);
+        boolean modify = false;
+        boolean empty = true;
+        System.out.println("Please Contact First Name!! ");
+        String contactFirstName = scanner.nextLine();
+        if (contactArrayList.size() != 0) {
+            empty = false;
+            Iterator<Contact> iterator = contactArrayList.iterator();
+            while (iterator.hasNext()) {
+                Contact contact1 = iterator.next();
+                if (contact1.getFirstName().equalsIgnoreCase(contactFirstName)) {
+                    System.out.println("Duplicate Entry!! Please start again!!!");
+                    modify = false;
+                } else {
+                    modify = true;
+                }
+            }
+        }
+        if (modify == true || empty == true) {
+            System.out.println("Enter Contact Last Name");
+            String lastName = scanner.next();
 
-        System.out.println("Enter Contact First Name");
-        String firstName = scanner.next();
+            System.out.println("Enter Contact Address Details");
+            String address = scanner.next();
 
-        System.out.println("Enter Contact Last Name");
-        String lastName = scanner.next();
+            System.out.println("Enter Contact City Name");
+            String city = scanner.next();
 
-        System.out.println("Enter Contact Address Details");
-        String address = scanner.next();
+            System.out.println("Enter Contact State Name");
+            String state = scanner.next();
 
-        System.out.println("Enter Contact City Name");
-        String city = scanner.next();
+            System.out.println("Enter Contact Zip");
+            String zip = scanner.next();
 
-        System.out.println("Enter Contact State Name");
-        String state = scanner.next();
+            System.out.println("Enter Contact Phone Number");
+            String phoneNumber = scanner.next();
 
-        System.out.println("Enter Contact Zip");
-        String zip = scanner.next();
+            System.out.println("Enter Contact Email");
+            String email = scanner.next();
 
-        System.out.println("Enter Contact Phone Number");
-        String phoneNumber = scanner.next();
+            Contact contact1 = new Contact(contactFirstName, lastName, address, city, state, zip, phoneNumber, email);
+            contactArrayList.add(contact1);
 
-        System.out.println("Enter Contact Email");
-        String email = scanner.next();
-
-        Contact contact1 = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-        contactArrayList.add(contact1);
-
-        System.out.println("Contact Details Added Successfully");
+            System.out.println("Contact Details Added Successfully");
+        }
     }
 
     public void displayContactDetails() {
@@ -206,6 +221,14 @@ public class AddressBook {
                             break;
                     }
                 }
+            }
+        }
+    }
+
+    public void searchPersons(String cityorState) {
+        for (Contact c : contactArrayList) {
+            if ( c.getCity().equalsIgnoreCase(cityorState) || c.getState().equalsIgnoreCase(cityorState)) {
+                System.out.println("First Name : " + c.getFirstName());
             }
         }
     }
