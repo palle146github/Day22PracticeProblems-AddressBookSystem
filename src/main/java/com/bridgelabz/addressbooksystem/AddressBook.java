@@ -8,7 +8,7 @@ public class AddressBook {
     ArrayList<Contact> contactArrayList = new ArrayList<>();
     Map<String, String> cityPerson = new HashMap<>();
     Map<String, String> statePerson = new HashMap<>();
-
+    public static int cityorStateCount;
 
     public void addContactToAddressBook() {
         Scanner scanner = new Scanner(System.in);
@@ -228,21 +228,33 @@ public class AddressBook {
         }
     }
 
-    public void searchPersonsbyCityorState(String cityorState) {
+
+    public void searchPersonsbyCity(String city) {
+        int countCity = 0;
         for (Contact c : contactArrayList) {
-            if (c.getCity().equalsIgnoreCase(cityorState) || c.getState().equalsIgnoreCase(cityorState)) {
-                System.out.println(c.getFirstName());
-                cityPerson.put(c.getCity(),c.getFirstName());
-                statePerson.put(c.getState(),c.getFirstName());
+            if (c.getCity().equalsIgnoreCase(city)) {
+                cityPerson.put(c.getCity(), c.getFirstName());
+                System.out.println(c.getFirstName() + "\t" + countState);
+            }
+        }
+    }
+
+    public void searchPersonsbyState(String state) {
+        int countState = 0;
+        for (Contact c : contactArrayList) {
+            if (c.getState().equalsIgnoreCase(state)) {
+                statePerson.put(c.getState(), c.getFirstName());
+                countState++;
+                System.out.println(c.getFirstName() + "\t" + countState);
             }
         }
     }
 
 
-    public void personFromCityorState(String personName){
-        for ( Contact c: contactArrayList ) {
-            if( c.getFirstName().equalsIgnoreCase(personName)){
-                System.out.println("\t\t\t"+c.getState()+"\t\t" + c.getState());
+    public void personFromCityorState(String personName) {
+        for (Contact c : contactArrayList) {
+            if (c.getFirstName().equalsIgnoreCase(personName)) {
+                System.out.println("\t\t\t" + c.getState() + "\t\t" + c.getState());
             }
         }
 

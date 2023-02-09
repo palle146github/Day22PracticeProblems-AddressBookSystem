@@ -127,16 +127,25 @@ public class AddressBookMain {
                 case 6:
                     if (addressBookHashMap.size() != 0) {
                         Scanner scan = new Scanner(System.in);
-                        System.out.println("Enter City or State of a Person");
-                        String cityOrState = scan.next();
-                        System.out.println("Persons from " + cityOrState.toUpperCase());
+                        System.out.println("Enter City of a Person");
+                        String city = scan.next();
+                        System.out.println("Enter State of a Person");
+                        String state = scan.next();
+                        AddressBook abs;
+                        System.out.println("Persons from " + city);
+                        int count = 0;
                         for (Map.Entry<String, AddressBook> entry : addressBookHashMap.entrySet()) {
                             String k = entry.getKey();
-                            AddressBook abs = addressBookHashMap.get(k);
-                            abs.searchPersonsbyCityorState(cityOrState);
+                            abs = addressBookHashMap.get(k);
+                            abs.searchPersonsbyCity(city);
                         }
-                    }
-                    else{
+                        System.out.println("Persons from " + state);
+                        for (Map.Entry<String, AddressBook> entry : addressBookHashMap.entrySet()) {
+                            String k = entry.getKey();
+                            abs = addressBookHashMap.get(k);
+                            abs.searchPersonsbyState(state);
+                        }
+                    } else {
                         System.out.println("Address Book is Empty");
                     }
                     break;
