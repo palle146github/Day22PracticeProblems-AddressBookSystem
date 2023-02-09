@@ -6,6 +6,9 @@ import java.util.*;
 public class AddressBook {
     Contact contact = new Contact();
     ArrayList<Contact> contactArrayList = new ArrayList<>();
+    Map<String, String> cityPerson = new HashMap<>();
+    Map<String, String> statePerson = new HashMap<>();
+
 
     public void addContactToAddressBook() {
         Scanner scanner = new Scanner(System.in);
@@ -227,8 +230,10 @@ public class AddressBook {
 
     public void searchPersonsbyCityorState(String cityorState) {
         for (Contact c : contactArrayList) {
-            if ( c.getCity().equalsIgnoreCase(cityorState) || c.getState().equalsIgnoreCase(cityorState)) {
+            if (c.getCity().equalsIgnoreCase(cityorState) || c.getState().equalsIgnoreCase(cityorState)) {
                 System.out.println(c.getFirstName());
+                cityPerson.put(c.getCity(),c.getFirstName());
+                statePerson.put(c.getState(),c.getFirstName());
             }
         }
     }
