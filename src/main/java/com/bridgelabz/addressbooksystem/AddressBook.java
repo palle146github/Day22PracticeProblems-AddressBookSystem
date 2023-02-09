@@ -63,27 +63,25 @@ public class AddressBook {
         }
     }
 
-    public Contact findContact(String firstName) {
-        for (Contact contact : contactArrayList) {
-            if (contact.getFirstName().equals(firstName)) {
-                return contact;
-            }
-        }
-        return null;
-    }
-
     public void deleteContact() {
         Scanner sd = new Scanner(System.in);
-        String firstName = sd.next();
-        Contact contact = findContact(firstName);
-        if (contact != null) {
-            contactArrayList.remove(contact);
-            System.out.println("Contact deleted successfully!");
+        if (contactArrayList.size() != 0) {
+            System.out.println("Please Enter the First name of contact which you want delete!!");
+            String name = sd.nextLine();
+            Iterator<Contact> iterator = contactArrayList.iterator();
+            while (iterator.hasNext()) {
+                Contact c = iterator.next();
+                if (name.equalsIgnoreCase(c.getFirstName())) {
+                    contactArrayList.remove(c);
+                    System.out.println("Employee of " + name + " is successfully deleted");
+                    break;
+                }
+
+            }
         } else {
-            System.out.println("Contact not found!");
+            System.out.println("No Employee exist in Company");
         }
     }
-}
 
     public void editExistingContact() {
         if (contactArrayList.size() == 0) {
